@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@aws-amplify/adapter-nextjs": "^1.2.24",
+    "@aws-amplify/api": "^6.0.56",
+    "@aws-amplify/api-graphql": "^4.4.3",
     "@babel/runtime": "^7.25.9",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
