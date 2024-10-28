@@ -94,7 +94,7 @@ const QuoteGeneratorModal = ({
                     }
 
                     {/* State #2: Quote state fulfilled */}
-                    {quoteReceived === null &&
+                    {quoteReceived !== null &&
                         <>
                             <QuoteGeneratorTitle>
                                 Download your quote!
