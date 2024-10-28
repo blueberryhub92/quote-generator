@@ -4,7 +4,8 @@ import styles from "@/styles/Home.module.css";
 import { useEffect, useState } from "react";
 
 // Components
-import { BackgroundImage1, BackgroundImage2, FooterCon, FooterLink, GenerateQuoteButton, GenerateQuoteButtonText, GradientBackgroundCon, QuoteGenerationSubTitle, QuoteGeneratorCon, QuoteGeneratorInnerCon, QuoteGeneratorTitle, RedSpan } from "@/components/QuoteGenerator/QuoteGeneratorElements";
+import { BackgroundImage1, BackgroundImage2, FooterCon, FooterLink, GenerateQuoteButton, GenerateQuoteButtonText, GradientBackgroundCon, QuoteGeneratorCon, QuoteGeneratorInnerCon, QuoteGeneratorSubTitle, QuoteGeneratorTitle, RedSpan } from "@/components/QuoteGenerator/QuoteGeneratorElements";
+import QuoteGeneratorModal from "@/components/QuoteGenerator";
 
 // Assets
 import Clouds1 from "../assets/Clouds1.png";
@@ -31,10 +32,14 @@ function isGraphQLResultForQuotesQueryName(response: any): response is GraphQLRe
   return response.data && response.data.quotesQueryName && response.data.quotesQueryName.items; 
 }
 
+
 const client = generateClient();
 
 export default function Home() {
   const [numberOfQuotes, setNumberOfQuotes] = useState<number | null>(0);
+  const [openGenerator, setOpenGenerator] = useState<boolean>(false);
+  const [processingQuote, setProcessingQuote] = useState<boolean>(false);
+  const [quoteReceived, setQuoteReceived] = useState<string | null>(null);
 
   // Function to fetch our DynamoDB object (quotes generated)
   const updateQuoteInfo = async () => {
@@ -71,6 +76,27 @@ export default function Home() {
     updateQuoteInfo();
   }, [])
 
+  // Functions for quote generator modal
+  const handleCloseGenerator = () => {
+    setOpenGenerator(false);
+  }
+
+  const handleOpenGenerator = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    setOpenGenerator(true);
+    setProcessingQuote(true);
+    try {
+      // Run Lambda Function
+      // setProcessingQuote(false);
+      setTimeout(() => {
+        setProcessingQuote(false);
+      }, 3000);
+    } catch (error) {
+      console.log('error generating quote:', error);
+      setProcessingQuote(false);
+    }
+  }
+
   return (
     <>
       <Head>
@@ -83,10 +109,14 @@ export default function Home() {
       <GradientBackgroundCon>
 
       {/*Quote Generator Modal Pop-Up*/}
-      {/* <QuoteGeneratorModal
-        // numberOfQuotes={numberOfQuotes}
-        // setNumberOfQuotes={setNumberOfQuotes}
-      /> */}
+      <QuoteGeneratorModal
+        open={openGenerator}
+        close={handleCloseGenerator}
+        processingQuote={processingQuote}
+        setProcessingQuote={setProcessingQuote}
+        quoteReceived={quoteReceived}
+        setQuoteReceived={setQuoteReceived}
+      />
 
       {/*Quote Generator*/}
       <QuoteGeneratorCon>
@@ -95,15 +125,13 @@ export default function Home() {
             Daily Inspiration Generator
           </QuoteGeneratorTitle>
 
-          <QuoteGenerationSubTitle>
+          <QuoteGeneratorSubTitle>
             Looking for a splash of inspiration? Generate a quote card with a random inspirational quote
             provided by <FooterLink href="https://zenquotes.io/" target="_blank" rel="noopener noreferrer">ZenQuotes API</FooterLink>.
-          </QuoteGenerationSubTitle>
+          </QuoteGeneratorSubTitle>
 
-          <GenerateQuoteButton>
-            <GenerateQuoteButtonText 
-            // onClick={(null)}
-            >
+          <GenerateQuoteButton onClick={handleOpenGenerator}>
+            <GenerateQuoteButtonText>
               Generate Quote
             </GenerateQuoteButtonText>
           </GenerateQuoteButton>
