@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import Link from "next/link";
-import Image from "next/image";
-import { Box, CircularProgress } from "@mui/material";
 
 import Lottie from 'lottie-react'
 
