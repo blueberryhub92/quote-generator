@@ -60,7 +60,7 @@ export default function Home() {
           queryName: "LIVE"
         },
       })
-      console.log('response', response);
+      // console.log('response', response);
       // setNumberOfQuotes(response.data.quotesQueryName.items[0].quotesGenerated);
 
       // Create Type Guards
