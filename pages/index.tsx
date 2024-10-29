@@ -1,3 +1,4 @@
+
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
@@ -33,7 +34,8 @@ interface UpdateQuoteInfoData {
 }
 
 // Typeguard for our fetch function
-function isGraphQLResultForQuotesQueryName(response: unknown): response is GraphQLResult<{
+/* eslint-disable-next-line */
+function isGraphQLResultForQuotesQueryName(response: any): response is GraphQLResult<{
   quotesQueryName: {
     items: UpdateQuoteInfoData[];
   };
