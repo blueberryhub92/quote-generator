@@ -1,10 +1,9 @@
+
 import Head from "next/head";
-import Image from "next/image";
-import styles from "@/styles/Home.module.css";
 import { useEffect, useState } from "react";
 
 // Components
-import { BackgroundImage1, BackgroundImage2, FooterCon, FooterLink, GenerateQuoteButton, GenerateQuoteButtonText, GradientBackgroundCon, QuoteGeneratorCon, QuoteGeneratorInnerCon, QuoteGeneratorSubTitle, QuoteGeneratorTitle, RedSpan } from "@/components/QuoteGenerator/QuoteGeneratorElements";
+import { BackgroundImage1, BackgroundImage2, FooterCon, FooterLink, GenerateQuoteButton, GenerateQuoteButtonText, GradientBackgroundCon, QuoteGeneratorCon, QuoteGeneratorInnerCon, QuoteGeneratorSubTitle, QuoteGeneratorTitle } from "@/components/QuoteGenerator/QuoteGeneratorElements";
 import QuoteGeneratorModal from "@/components/QuoteGenerator";
 
 // Assets
@@ -35,6 +34,7 @@ interface UpdateQuoteInfoData {
 }
 
 // Typeguard for our fetch function
+/* eslint-disable-next-line */
 function isGraphQLResultForQuotesQueryName(response: any): response is GraphQLResult<{
   quotesQueryName: {
     items: UpdateQuoteInfoData[];
@@ -62,7 +62,7 @@ export default function Home() {
           queryName: "LIVE"
         },
       })
-      console.log('response', response);
+      // console.log('response', response);
       // setNumberOfQuotes(response.data.quotesQueryName.items[0].quotesGenerated);
 
       // Create Type Guards
@@ -150,9 +150,9 @@ export default function Home() {
         open={openGenerator}
         close={handleCloseGenerator}
         processingQuote={processingQuote}
-        setProcessingQuote={setProcessingQuote}
+        // setProcessingQuote={setProcessingQuote}
         quoteReceived={quoteReceived}
-        setQuoteReceived={setQuoteReceived}
+        // setQuoteReceived={setQuoteReceived}
       />
 
       {/*Quote Generator*/}

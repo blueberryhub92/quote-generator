@@ -11,9 +11,9 @@ interface QuoteGeneratorModalProps {
     open: boolean;
     close: () => void;
     processingQuote: boolean;
-    setProcessingQuote: React.Dispatch<React.SetStateAction<boolean>>;
+    // setProcessingQuote: React.Dispatch<React.SetStateAction<boolean>>;
     quoteReceived: string | null;
-    setQuoteReceived: React.Dispatch<React.SetStateAction<string | null>>;
+    // setQuoteReceived: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const style = {
@@ -24,9 +24,7 @@ const QuoteGeneratorModal = ({
     open, 
     close,
     processingQuote,
-    setProcessingQuote,
     quoteReceived,
-    setQuoteReceived
 }: QuoteGeneratorModalProps) => {
 
   const wiseDevQuote = "“The greatest glory in living lies not in never falling, but in rising every time we fall.”";
