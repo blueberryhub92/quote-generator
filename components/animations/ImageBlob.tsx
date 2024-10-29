@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Image from 'next/image'
 
 interface ImageBlobProps {
-  quoteReceived: String | null;
+  quoteReceived: string | null;
   blobUrl: string | null;
 }
 
 const ImageBlob = ({
-  quoteReceived, 
+  // quoteReceived, 
   blobUrl
 }: ImageBlobProps) => {
   // const [blobUrl, setBlobUrl] = useState<string | null>(null)

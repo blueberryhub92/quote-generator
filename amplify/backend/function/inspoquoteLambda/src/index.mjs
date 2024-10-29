@@ -66,7 +66,7 @@ export async function handler(event) {
       
         // Validate response to the API
         const response = await fetch(apiURLInput);
-        var quoteData = await response.json();
+        const quoteData = await response.json();
         console.log(quoteData);
       
         quoteText = quoteData[0].q;
@@ -143,7 +143,7 @@ export async function handler(event) {
         const selectedBackgroundImage = backgroundImages[randomIndex];
       
         // Composite this image together
-        const timestamp = new Date().toLocaleString().replace(/[^\d]/g, "");
+        // const timestamp = new Date().toLocaleString().replace(/[^\d]/g, "");
         const svgBuffer = Buffer.from(svgImage);
         
         const imagePath = path.join('/tmp', 'quote-card.png');

@@ -1,6 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "@/styles/Home.module.css";
 import { useEffect, useState } from "react";
 
 // Components
@@ -35,7 +33,7 @@ interface UpdateQuoteInfoData {
 }
 
 // Typeguard for our fetch function
-function isGraphQLResultForQuotesQueryName(response: any): response is GraphQLResult<{
+function isGraphQLResultForQuotesQueryName(response: unknown): response is GraphQLResult<{
   quotesQueryName: {
     items: UpdateQuoteInfoData[];
   };
@@ -150,9 +148,9 @@ export default function Home() {
         open={openGenerator}
         close={handleCloseGenerator}
         processingQuote={processingQuote}
-        setProcessingQuote={setProcessingQuote}
+        // setProcessingQuote={setProcessingQuote}
         quoteReceived={quoteReceived}
-        setQuoteReceived={setQuoteReceived}
+        // setQuoteReceived={setQuoteReceived}
       />
 
       {/*Quote Generator*/}
